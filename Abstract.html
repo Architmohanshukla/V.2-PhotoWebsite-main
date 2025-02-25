@@ -8,126 +8,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <h2>ABSTRACT</h2>
-                <h3>Unravel the intrigue </h3>
-            </div>
-        </div>
+   <header>
+        <nav>
+            <a href="landing page.html">Home</a>
+            <a href="landscape.html">Landscape</a>
+            <a href="portrait.html">Portrait</a>
+            <a href="abstract.html">Abstract</a>
+        </nav>
     </header>
-    <main>
-        <section class="gallery masonry-layout">
-            <div class="containerss">
-                <div class="photo" onclick="openLightbox('abstract\abs8.jpeg', 'Concrete and Green Symphony')">
-                    <img src="abstract\abs8.jpeg" alt="Landscape Photo 1">
-                    <div class="overlay">
-                        <p>Concrete and Green Symphony</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abstract_phototrail.jpg', 'Aerial Symphony')">
-                    <img src="abstract\abstract_phototrail.jpg" alt="Landscape Photo 4">
-                    <div class="overlay">
-                        <p>Aerial Symphony</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abstract.webp', 'Where Nature and Design Embrace')">
-                    <img src="abstract\abstract.webp" alt="Landscape Photo 2">
-                    <div class="overlay">
-                        <p>Where Nature and Design Embrace</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\Abs2.jpg', 'Splashes of Color')">
-                    <img src="abstract\Abs2.jpg"  alt="Landscape Photo 3">
-                    <div class="overlay">
-                        <p>Splashes of Color</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abs5.jpeg', 'Elevated Perspectives of City Life')">
-                    <img src="abstract\abs5.webp"  alt="Landscape Photo 5">
-                    <div class="overlay">
-                        <p>Elevated Perspectives of City Life</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abstrat101.jpg', 'Elevated Perspectives of City Life')">
-                    <img src="abstract\abstrat101.jpg"  alt="Landscape Photo 5">
-                    <div class="overlay">
-                        <p>Elevated Perspectives of City Life</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abs9.jpg', 'Concrete and Green Symphony')">
-                    <img src="abstract\abs9.jpg"  alt="Landscape Photo 1">
-                    <div class="overlay">
-                        <p>Concrete and Green Symphony</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abs6.jpg', 'Elevated Perspectives of City Life')">
-                    <img src="abstract\abs6.jpg"  alt="Landscape Photo 5">
-                    <div class="overlay">
-                        <p>Elevated Perspectives of City Life</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\Abstract_Stiry.jpg', 'Where Nature and Design Embrace')">
-                    <img src="abstract\Abstract_Stiry.jpg" alt="Smily Ball">
-                    <div class="overlay">
-                        <p>Where Nature and Design Embrace</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\ls9.jpg', 'Where Nature and Design Embrace')">
-                    <img src="abstract\ls9.jpg" alt="Landscape Photo 2">
-                    <div class="overlay">
-                        <p>Where Nature and Design Embrace</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\Lightning3_ab.jpg', 'Splashes of Color')">
-                    <img src="abstract\Lightning3_ab.jpg"  alt="Landscape Photo 3">
-                    <div class="overlay">
-                        <p>Splashes of Color</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\abs7.jpg', 'Elevated Perspectives of City Life')">
-                    <img src="abstract\abs7.jpg"  alt="Burned Paper">
-                    <div class="overlay">
-                        <p>Elevated Perspectives of City Life</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\ankit2.jpg', 'Aerial Symphony')">
-                    <img src="abstract\ankit2.jpg"  alt="Landscape Photo 4">
-                    <div class="overlay">
-                        <p>Aerial Symphony</p>
-                    </div>
-                </div>
-                <div class="photo" onclick="openLightbox('abstract\Moon_abstract.jpg', 'Elevated Perspectives of City Life')">
-                    <img src="abstract\Moon_abstract.jpg"  alt="Landscape Photo 5">
-                    <div class="overlay">
-                        <p>Elevated Perspectives of City Life</p>
-                    </div>
-                </div>
-                <!-- Add more images as needed -->
-            </div>
-        </section>
-    </main>
-    <!-- Footer Section -->
-    <footer id="myFooter">
-        <div class="footer-container">
-            <div class="left-section">
-                <p>By Archit with <span class="heart">&#10084;</span></p>
-            </div>
-            <div class="right-section">
-                <a href="mailto:archit47a@gmail.com">Mail Me</a>
-                <a href="https://wa.me/919990951644/?text=Hi Archit, What's up" target="_blank">WhatsApp</a>
-                <a href="https://www.linkedin.com/in/archit-mohan-shukla-0b2b15209/" target="_blank">LinkedIn</a>
-                <div class="scroll-to-top" onclick="scrollToTop()">⬆️</div>
-            </div>
+    <section class="gallery">
+        <h1>Abstract</h1>
+        <div class="gallery-grid">
+            <!-- JS will populate this with masonry layout -->
         </div>
-    </footer>
-<!-- Modal Structure -->
-<div id="myModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <div id="caption"></div>
-</div>
-
+    </section>
+    <div class="full-viewer" id="fullViewer">
+        <img id="fullImage" alt="Full Image">
+        <span id="imageCaption"></span>
+        <button class="close-viewer"></button>
+    </div>
 
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
     <script src="script.js" defer></script>
