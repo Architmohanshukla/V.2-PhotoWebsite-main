@@ -1,0 +1,7 @@
+{
+  "name": "portfolio-upload",
+  "version": "1.0.0",
+  "description": "Photography portfolio with dynamic image uploads",
+  "main": "Portfolio.html",
+  "dependencies": {}
+}

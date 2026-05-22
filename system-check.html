@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - System Check</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #050505;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        .checks {
+            display: grid;
+            gap: 15px;
+        }
+
+        .check {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .check.pass {
+            border-left-color: #4CAF50;
+        }
+
+        .check.fail {
+            border-left-color: #e53935;
+        }
+
+        .check.pending {
+            border-left-color: #2196F3;
+        }
+
+        .check-name {
+            font-weight: bold;
+        }
+
+        .check-status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .check.pass .check-status {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .check.fail .check-status {
+            background-color: rgba(229, 57, 53, 0.2);
+            color: #e53935;
+        }
+
+        .check.pending .check-status {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+        }
+
+        .summary {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .summary h2 {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        .pass-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #0b7dda;
+        }
+
+        .tips {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .tips h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+
+        .tips ol {
+            margin-left: 20px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .tips li {
+            margin-bottom: 10px;
+        }
+
+        .code {
+            background-color: #0a0a0a;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .check {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Portfolio System Check</h1>
+
+        <div class="checks" id="checks">
+            <!-- Checks will be populated here by JavaScript -->
+        </div>
+
+        <div class="summary">
+            <h2>System Status</h2>
+            <div class="pass-count" id="passCount">0 / 8</div>
+            <p id="statusMessage">Running checks...</p>
+            <div class="actions">
+                <a href="Portfolio.html" class="btn btn-primary">Go to Portfolio</a>
+                <a href="admin.html" class="btn btn-secondary">Open Admin</a>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h3>💡 Next Steps</h3>
+            <ol>
+                <li>All checks should show <span style="color: #4CAF50;">✓ PASS</span></li>
+                <li>If any fail, check the troubleshooting section</li>
+                <li>Try clicking "Go to Portfolio"</li>
+                <li>Click "+ Upload Photos" button to test upload</li>
+                <li>Visit Admin dashboard to see statistics</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const checks = [
+            {
+                name: 'Portfolio.html exists',
+                test: () => fetch('Portfolio.html').then(r => r.ok)
+            },
+            {
+                name: 'upload-handler.js loaded',
+                test: () => typeof window.XMLHttpRequest !== 'undefined'
+            },
+            {
+                name: 'stylePortfolio.css loaded',
+                test: () => document.styleSheets.length > 0
+            },
+            {
+                name: 'stylePortfolio-modal.css loaded',
+                test: () => !!document.querySelector('link[href*="modal"]')
+            },
+            {
+                name: 'Admin dashboard exists',
+                test: () => fetch('admin.html').then(r => r.ok)
+            },
+            {
+                name: 'Browser supports lazy loading',
+                test: () => 'loading' in HTMLImageElement.prototype
+            },
+            {
+                name: 'LocalStorage available',
+                test: () => {
+                    try {
+                        localStorage.setItem('test', 'test');
+                        localStorage.removeItem('test');
+                        return true;
+                    } catch (e) {
+                        return false;
+                    }
+                }
+            },
+            {
+                name: 'JavaScript enabled',
+                test: () => true
+            }
+        ];
+
+        async function runChecks() {
+            const checkContainer = document.getElementById('checks');
+            let passCount = 0;
+
+            for (const check of checks) {
+                const checkEl = document.createElement('div');
+                checkEl.className = 'check pending';
+                checkEl.innerHTML = `
+                    <span class="check-name">${check.name}</span>
+                    <span class="check-status">CHECKING...</span>
+                `;
+                checkContainer.appendChild(checkEl);
+
+                try {
+                    const result = await Promise.resolve(check.test());
+                    if (result) {
+                        checkEl.className = 'check pass';
+                        checkEl.querySelector('.check-status').textContent = '✓ PASS';
+                        passCount++;
+                    } else {
+                        checkEl.className = 'check fail';
+                        checkEl.querySelector('.check-status').textContent = '✗ FAIL';
+                    }
+                } catch (e) {
+                    checkEl.className = 'check fail';
+                    checkEl.querySelector('.check-status').textContent = '✗ ERROR';
+                }
+            }
+
+            // Update summary
+            document.getElementById('passCount').textContent = `${passCount} / ${checks.length}`;
+            
+            if (passCount === checks.length) {
+                document.getElementById('statusMessage').innerHTML = 
+                    '<strong style="color: #4CAF50;">✓ All systems operational!</strong> Your portfolio is ready to use.';
+            } else {
+                document.getElementById('statusMessage').innerHTML = 
+                    '<strong style="color: #e53935;">⚠ Some checks failed.</strong> See above for details.';
+            }
+        }
+
+        // Run checks when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runChecks);
+        } else {
+            runChecks();
+        }
+    </script>
+</body>
+</html>

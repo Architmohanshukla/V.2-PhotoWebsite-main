@@ -198,3 +198,11 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: '100px' });
 
 document.querySelectorAll('img[loading="lazy"]').forEach(img => observer.observe(img));
+
+// Scroll to top function
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
